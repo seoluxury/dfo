@@ -1,0 +1,5 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.dfo.com.au	TRUE	/	FALSE	1999999999	__cf_bm	kJTHzLii2pILBma8qhpP0YTGUixOacLynU3vYRKPi_A-1756519493-1.0.1.1-0YMV.CijQ2iVxQttdJbHPLgYHw3Vu4Nm69fUARpe0_1BzQ9T64MHnYFs6ISYCnIRSSU3F0NBL7xDeKHcAxC6cdon8DrKOZ7aryJyA5nK8VI
+www.dfo.com.au	TRUE	/	FALSE	1999999999	SameSite	None
+

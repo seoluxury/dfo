@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# 1. Redirect domain không có www → có www
+RewriteCond %{HTTP_HOST} ^dfo-aus\.com$ [NC]
+RewriteRule ^(.*)$ https://www.dfo-aus.com/$1 [L,R=301]
+
+# 2. Truy cập domain.com đọc dfo/index.html nhưng giữ URL đẹp
+RewriteRule ^$ dfo/index.html [L]
+
+# 3. Rewrite URL đẹp cho sign-up
+RewriteRule ^sign-up/?$ dfo/sign-up.html [L]
+RewriteRule ^web-maintenance/?$ web-maintenance.html [L]

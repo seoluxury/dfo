@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gpo Adsense - Maintenance Notice</title>
+  <style>
+    :root { --header-h: 140px; } /* chỉnh theo chiều cao ảnh thực tế */
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #333;
+      text-align: center;
+    }
+
+    /* Header image always on top */
+    .header {
+      position: sticky;           /* bám đỉnh khi cuộn */
+      top: 0;                     /* bắt dính ở mép trên */
+      z-index: 10;                /* trên các phần khác */
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+    .header img {
+      display: block;
+      height: var(--header-h);    /* cố định chiều cao header */
+      width: auto;                /* giữ tỉ lệ ảnh */
+      margin: 0 auto;             /* căn giữa */
+      max-width: 100%;
+      object-fit: contain;
+      padding: 12px 0;            /* khoảng thoáng quanh ảnh */
+    }
+
+    /* Nội dung bên dưới */
+    .page {
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      margin: 0 auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      max-width: 500px;
+      width: 100%;
+      border: 1px solid #eee;
+    }
+    h1 { font-size: 26px; margin-bottom: 16px; color: #000 }
+    p { font-size: 16px; margin-bottom: 24px; line-height: 1.6 }
+
+    .countdown {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      gap: 12px;
+    }
+    .countdown div {
+      flex: 1;
+      padding: 12px;
+      background: #000;
+      color: #fff;
+      border-radius: 8px;
+    }
+    .countdown span { display: block; font-size: 22px; font-weight: bold }
+    .countdown label { font-size: 13px; opacity: .95 }
+
+    @media (max-width: 500px) {
+      .countdown { flex-direction: column }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sticky header image on top -->
+  <div class="header" role="banner" aria-label="Brand image">
+    <!-- TODO: đổi src thành ảnh của anh -->
+    <img src="https://www.dfo-aus.com/a.storyblok.com/f/63175/970x630/78100abf4d/dfo-homebush-logo.jpg" alt="Gpo Adsense" />
+  </div>
+
+  <main class="page" role="main">
+    <div class="container">
+      <h1>We'll Be Back Soon!</h1>
+      <p>
+        DFO Home Bush is currently undergoing scheduled maintenance and system upgrades.<br/>
+        Please contact us again after <strong>17:00 PM (UTC+8), September 1, 2025 </strong>.
+      </p>
+
+      <div class="countdown" aria-label="Countdown">
+        <div><span id="days">0</span><label>Days</label></div>
+        <div><span id="hours">0</span><label>Hours</label></div>
+        <div><span id="minutes">0</span><label>Minutes</label></div>
+        <div><span id="seconds">0</span><label>Seconds</label></div>
+      </div>
+
+      <p style="font-style: italic; font-size: 14px;">
+        ⏳ Please note: the maintenance may be completed earlier or later than expected.<br/>
+        We appreciate your understanding and patience.
+      </p>
+    </div>
+  </main>
+
+  <script>
+    // Fixed end time: 2025-09-03 20:00 at GMT+8 (ISO 8601 with offset)
+    const endTime = new Date("2025-09-01T17:00:00+08:00").getTime(); // consistent across browsers [7][2]
+
+    function updateCountdown() {
+      const now = Date.now();
+      const timeLeft = endTime - now;
+
+      const countdownEl = document.querySelector('.countdown');
+      if (timeLeft <= 0) {
+        countdownEl.innerHTML = '<strong>✅ The system is now live!</strong>';
+        return;
+      }
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeLeft / 1000) % 60);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    // Ensure DOM ready, then start ticking every second
+    function start() { updateCountdown(); setInterval(updateCountdown, 1000); }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', start);
+    } else { start(); }
+  </script>
+</body>
+</html>
